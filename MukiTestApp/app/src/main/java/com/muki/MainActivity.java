@@ -5,11 +5,13 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Point;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -130,6 +132,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Typeface font = Typeface.createFromAsset( getAssets(), "fontawesome-webfont.ttf" );
+        Button button = (Button)findViewById( R.id.refresh );
+        button.setTypeface(font);
+
         reset(null);
     }
 
@@ -163,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
         Bitmap image = BitmapFactory.decodeResource(getResources(), R.drawable.test_image);
         mImage = ImageUtils.scaleBitmapToCupSize(image);
         mContrast = ImageProperties.DEFAULT_CONTRACT;
-        mContrastSeekBar.setProgress(100);
+        mContrastSeekBar.setProgress(150);
         Random rand = new Random();
 
         Integer n1 = rand.nextInt(30) + 10;

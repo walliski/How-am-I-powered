@@ -18,50 +18,62 @@
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
+        <!--ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/bolt"/-->
+
         <EditText
             android:id="@+id/serailNumberText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:inputType="number"
-            android:hint="Enter serial"/>
+            android:hint="Enter serial"
+            android:visibility="gone"/>
 
         <Button
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:onClick="request"
-            android:text="Request"/>
+            android:text="Request"
+            android:visibility="gone"/>
     </LinearLayout>
 
     <TextView
         android:id="@+id/cupIdText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="No Cup Id"/>
+        android:hint="No Cup Id"
+        android:visibility="gone"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="deviceInfo"
-        android:text="Device info"/>
+        android:text="Device info"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/deviceInfoText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:text="Contrast"/>
+        android:text="Contrast"
+        android:visibility="gone"/>
 
     <SeekBar
         android:id="@+id/contrastSeekBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:max="200"/>
+        android:max="200"
+        android:visibility="gone"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -73,30 +85,38 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="crop"
-            android:text="Crop"/>
+            android:text="Crop"
+            android:visibility="gone"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="reset"
-            android:text="Reset"/>
+            android:text="Reset"
+            android:visibility="gone"/>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="send"
-            android:text="Send"/>
+
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="clear"
-            android:text="Clear"/>
+            android:text="Clear"
+            android:visibility="gone"/>
     </LinearLayout>
-
 
     <ImageView
         android:id="@+id/imageSrc"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_marginBottom="100dp"
+        />
+
+    <Button
+        android:id="@+id/refresh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="send"
+        android:text="@string/icon_refresh"/>
 </LinearLayout>

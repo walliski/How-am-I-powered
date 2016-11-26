@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">MukiTestApp</string>
+    <string name="app_name">How am I powered?</string>
+    <string name="icon_refresh">&#xf021;</string>
 </resources>

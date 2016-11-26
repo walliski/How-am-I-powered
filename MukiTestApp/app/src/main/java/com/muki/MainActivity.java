@@ -18,6 +18,10 @@ import android.widget.Toast;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import java.util.Random;
+import java.util.Calendar;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 import com.muki.core.MukiCupApi;
 import com.muki.core.MukiCupCallback;
@@ -56,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
-        mPaint.setStrokeWidth(3F);
+        mPaint.setStrokeWidth(2F);
         mPaint.setStyle(Paint.Style.STROKE);
 
         mProgressDialog = new ProgressDialog(this);
@@ -128,7 +132,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
         reset(null);
     }
 
@@ -138,7 +141,6 @@ public class MainActivity extends AppCompatActivity {
             protected Bitmap doInBackground(Void... voids) {
                 Bitmap result = Bitmap.createBitmap(mImage);
                 ImageUtils.convertImageToCupImage(result, mContrast);
-                mCanvas = new Canvas(mImage);
                 return result;
             }
 
@@ -164,20 +166,32 @@ public class MainActivity extends AppCompatActivity {
         mImage = ImageUtils.scaleBitmapToCupSize(image);
         mContrast = ImageProperties.DEFAULT_CONTRACT;
         mContrastSeekBar.setProgress(100);
+        Random rand = new Random();
+
+        Integer n1 = rand.nextInt(30) + 10;
+        Integer n2 = rand.nextInt(20) + 5;
+        Integer n3 = rand.nextInt(10) + 1;
+        drawTxt(n1.toString() + " %", Color.BLACK, 30, 80, 50);
+        drawTxt(n2.toString() + " %", Color.BLACK, 30, 80, 105);
+        drawTxt(n3.toString() + " %", Color.BLACK, 30, 80, 165);
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        drawTxt(dateFormat.format(Calendar.getInstance().getTime()), Color.BLACK, 30, 5, 229);
+        
         setupImage();
         image.recycle();
     }
 
     public void send(View view) {
         showProgress();
-        drawTxt(mTextInput.getText().toString(), 30, 0, 264);
         mMukiCupApi.sendImage(mImage, new ImageProperties(mContrast), mCupId);
     }
 
-    public void drawTxt(String text, int fontsize, int x, int y) {
-        mPaint.setColor(Color.WHITE);
+    public void drawTxt(String text, int color, int fontsize, int x, int y) {
+        mPaint.setColor(color);
         mPaint.setTextSize(fontsize);
-        mCanvas.drawText(text,0,text.length(),x,y,mPaint);
+        mCanvas = new Canvas(mImage);
+        mCanvas.drawText(text,0,text.length(),x,y+fontsize,mPaint);
     }
 
     public void clear(View view) {

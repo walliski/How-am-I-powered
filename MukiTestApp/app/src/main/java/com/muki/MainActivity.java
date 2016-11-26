@@ -85,9 +85,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         mSerialNumberEdit = (EditText) findViewById(R.id.serailNumberText);
+        mSerialNumberEdit.setText("0003833");
         mCupIdText = (TextView) findViewById(R.id.cupIdText);
         mDeviceInfoText = (TextView) findViewById(R.id.deviceInfoText);
         mCupImage = (ImageView) findViewById(R.id.imageSrc);
+
         mContrastSeekBar = (SeekBar) findViewById(R.id.contrastSeekBar);
         mContrastSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override

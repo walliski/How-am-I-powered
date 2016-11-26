@@ -8,6 +8,7 @@ import android.graphics.Point;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -32,6 +33,7 @@ import android.support.v4.app.ActivityCompat;
 public class MainActivity extends AppCompatActivity {
 
     private EditText mSerialNumberEdit;
+    private EditText mTextInput;
     private TextView mCupIdText;
     private TextView mDeviceInfoText;
     private ImageView mCupImage;
@@ -66,11 +68,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onCupConnected() {
                 showToast("Cup connected");
+                Log.w("muki", "CONNECT");
             }
 
             @Override
             public void onCupDisconnected() {
                 showToast("Cup disconnected");
+                Log.w("muki", "DISCO");
             }
 
             @Override
@@ -102,6 +106,8 @@ public class MainActivity extends AppCompatActivity {
         mCupId =  "PAULIG_MUKI_3F99F6";
         mDeviceInfoText = (TextView) findViewById(R.id.deviceInfoText);
         mCupImage = (ImageView) findViewById(R.id.imageSrc);
+
+        mTextInput = (EditText) findViewById(R.id.textInput);
 
         mContrastSeekBar = (SeekBar) findViewById(R.id.contrastSeekBar);
         mContrastSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -164,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void send(View view) {
         showProgress();
-        drawTxt("Hello World", 30, 0, 264);
+        drawTxt(mTextInput.getText().toString(), 30, 0, 264);
         mMukiCupApi.sendImage(mImage, new ImageProperties(mContrast), mCupId);
     }
 

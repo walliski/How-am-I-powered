@@ -44,7 +44,6 @@ import java.util.Set;
 public class MainActivity extends AppCompatActivity {
 
     private EditText mSerialNumberEdit;
-    private EditText mTextInput;
     private TextView mCupIdText;
     private TextView mDeviceInfoText;
     private ImageView mCupImage;
@@ -125,8 +124,6 @@ public class MainActivity extends AppCompatActivity {
         mDeviceInfoText = (TextView) findViewById(R.id.deviceInfoText);
         mCupImage = (ImageView) findViewById(R.id.imageSrc);
         //mCupAddress = "D3:E1:C4:3F:99:F6"; // Cup
-
-        mTextInput = (EditText) findViewById(R.id.textInput);
 
         mContrastSeekBar = (SeekBar) findViewById(R.id.contrastSeekBar);
         mContrastSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -227,7 +224,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void send(View view) {
         showProgress();
-        drawTxt(mTextInput.getText().toString(), 30, 0, 264);
         mMukiCupApi.sendImage(mImage, new ImageProperties(mContrast), mCupId);
     }
 

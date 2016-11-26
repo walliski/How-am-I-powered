@@ -3,6 +3,7 @@ package com.muki;
 import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -13,6 +14,9 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import android.graphics.Canvas;
+import android.graphics.Paint;
 
 import com.muki.core.MukiCupApi;
 import com.muki.core.MukiCupCallback;
@@ -40,11 +44,18 @@ public class MainActivity extends AppCompatActivity {
     private String mCupId;
     private MukiCupApi mMukiCupApi;
 
+    private Paint mPaint;
+    private Canvas mCanvas;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mPaint = new Paint();
+        mPaint.setAntiAlias(true);
+        mPaint.setStrokeWidth(3F);
+        mPaint.setStyle(Paint.Style.STROKE);
 
         mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setCancelable(false);
@@ -119,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
             protected Bitmap doInBackground(Void... voids) {
                 Bitmap result = Bitmap.createBitmap(mImage);
                 ImageUtils.convertImageToCupImage(result, mContrast);
+                mCanvas = new Canvas(mImage);
                 return result;
             }
 
@@ -150,7 +162,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void send(View view) {
         showProgress();
+        drawTxt("Hello World", 30, 0, 264);
         mMukiCupApi.sendImage(mImage, new ImageProperties(mContrast), mCupId);
+    }
+
+    public void drawTxt(String text, int fontsize, int x, int y) {
+        mPaint.setColor(Color.WHITE);
+        mPaint.setTextSize(fontsize);
+        mCanvas.drawText(text,0,text.length(),x,y,mPaint);
     }
 
     public void clear(View view) {

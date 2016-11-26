@@ -25,8 +25,7 @@ import com.muki.core.util.ImageUtils;
 import android.Manifest;
 import android.support.v4.app.ActivityCompat;
 
-public class MainActivity extends AppCompatActivity
-        implements ActivityCompat.OnRequestPermissionsResultCallback {
+public class MainActivity extends AppCompatActivity {
 
     private EditText mSerialNumberEdit;
     private TextView mCupIdText;

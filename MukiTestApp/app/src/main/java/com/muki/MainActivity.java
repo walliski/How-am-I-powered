@@ -55,6 +55,11 @@ public class MainActivity extends AppCompatActivity {
     private Paint mPaint;
     private Canvas mCanvas;
 
+    private Random mRandom;
+    private Integer mNuclear;
+    private Integer mSolar;
+    private Integer mWind;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +76,8 @@ public class MainActivity extends AppCompatActivity {
         mProgressDialog.setCancelable(false);
         mProgressDialog.setMessage("Loading. Please wait...");
         mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+
+
 
         mMukiCupApi = new MukiCupApi(getApplicationContext(), new MukiCupCallback() {
             @Override
@@ -135,6 +142,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        mRandom = new Random();
+
+        mWind = mRandom.nextInt(30) + 10;
+        mSolar = mRandom.nextInt(20) + 5;
+        mNuclear = mRandom.nextInt(10) + 1;
+
+        TextView windTextView = (TextView) findViewById(R.id.textViewWind);
+        String postFix = " %";
+        windTextView.setText(mWind.toString() + postFix);
+
+        TextView solarTextView = (TextView) findViewById(R.id.textViewSolar);
+        solarTextView.setText(mSolar.toString() + postFix);
+
+        TextView nuclearTextView = (TextView) findViewById(R.id.textViewNuclear);
+        nuclearTextView.setText(mNuclear.toString() + postFix);
+
         Typeface font = Typeface.createFromAsset( getAssets(), "fontawesome-webfont.ttf" );
         //Button refreshButton = (Button)findViewById( R.id.refresh );
         //refreshButton.setTypeface(font);
@@ -171,15 +194,11 @@ public class MainActivity extends AppCompatActivity {
         showProgress();
         img.eraseColor(Color.WHITE);
 
-        Random rand = new Random();
-        Integer n1 = rand.nextInt(30) + 10;
-        Integer n2 = rand.nextInt(20) + 5;
-        Integer n3 = rand.nextInt(10) + 1;
         char up = 0x25b4;
         char down = 0x25be;
-        drawTxt(n1.toString() + " % " + String.valueOf(up), Color.BLACK, 30, 80, 55);
-        drawTxt(n2.toString() + " % " + String.valueOf(down), Color.BLACK, 30, 80, 110);
-        drawTxt(n3.toString() + " % " + String.valueOf(up), Color.BLACK, 30, 80, 165);
+        drawTxt(mWind.toString() + " % " + String.valueOf(up), Color.BLACK, 30, 80, 50);
+        drawTxt(mSolar.toString() + " % " + String.valueOf(down), Color.BLACK, 30, 80, 105);
+        drawTxt(mNuclear.toString() + " % " + String.valueOf(up), Color.BLACK, 30, 80, 165);
 
         DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
         drawTxt(dateFormat.format(Calendar.getInstance().getTime()), Color.BLACK, 30, 5, 229);

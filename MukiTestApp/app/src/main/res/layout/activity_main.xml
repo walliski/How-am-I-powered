@@ -112,66 +112,73 @@
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="70dp">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
             app:srcCompat="@drawable/wind"
-            android:id="@+id/imageView"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:gravity="center"
+            android:id="@+id/imageView" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/textViewWind"
             android:layout_weight="1"
-            android:text="The first %"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:gravity="left"
+            android:hint="Wind"/>
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <ImageView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    app:srcCompat="@drawable/sun"
-    android:id="@+id/imageView2"
-            android:layout_weight="1" />
-
-        <TextView
-            android:text="The second %"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView2"
-            android:layout_weight="1"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="0.84">
+        android:layout_height="70dp"
+        >
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            app:srcCompat="@drawable/sun"
+            android:id="@+id/imageView2" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/textViewSolar"
+            android:layout_weight="1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:gravity="left"
+            android:hint="Solar"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="70dp">
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
             app:srcCompat="@drawable/atom"
+            android:layout_weight="1"
+            android:gravity="center"
             android:id="@+id/imageView3" />
 
         <TextView
-            android:text="Third one %"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView3"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/textViewNuclear"
             android:layout_weight="1"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:gravity="left"
+            android:hint="Nuclear"/>
     </LinearLayout>
 
     <Button
@@ -185,12 +192,11 @@
     <android.support.design.widget.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right|end"
+        android:layout_gravity="bottom|end"
         android:clickable="true"
         android:text="@string/icon_refresh"
         android:onClick="send"
-        app:fabSize="auto"
+        app:fabSize="normal"
         android:id="@+id/fab"
-        android:src="@drawable/refresh"
-        />
+        android:src="@drawable/refresh" />
 </LinearLayout>

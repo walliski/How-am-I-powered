@@ -133,8 +133,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         Typeface font = Typeface.createFromAsset( getAssets(), "fontawesome-webfont.ttf" );
-        Button button = (Button)findViewById( R.id.refresh );
-        button.setTypeface(font);
+        //Button refreshButton = (Button)findViewById( R.id.refresh );
+        //refreshButton.setTypeface(font);
+        //TextView sunIcon = (TextView)findViewById( R.id.sun );
+        //sunIcon.setTypeface(font);
 
         reset(null);
     }

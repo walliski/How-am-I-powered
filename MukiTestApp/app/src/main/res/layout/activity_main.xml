@@ -19,11 +19,6 @@
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <!--ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/bolt"/-->
-
         <EditText
             android:id="@+id/serailNumberText"
             android:layout_width="0dp"
@@ -184,5 +179,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="send"
-        android:text="@string/icon_refresh"/>
+        android:text="@string/icon_refresh"
+        android:visibility="gone" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right|end"
+        android:clickable="true"
+        android:text="@string/icon_refresh"
+        android:onClick="send"
+        app:fabSize="auto"
+        android:id="@+id/fab"
+        android:src="@drawable/refresh"
+        />
 </LinearLayout>

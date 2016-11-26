@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">How am I powered?</string>
     <string name="icon_refresh">&#xf021;</string>
+    <string name="icon_sun">&#xf185;</string>
 </resources>

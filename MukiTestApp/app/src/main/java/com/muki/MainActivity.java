@@ -1,12 +1,6 @@
 package com.muki;
 
 import android.app.ProgressDialog;
-import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -40,8 +34,6 @@ import com.muki.core.util.ImageUtils;
 import android.Manifest;
 import android.support.v4.app.ActivityCompat;
 
-import java.util.ArrayList;
-
 public class MainActivity extends AppCompatActivity {
 
     private EditText mSerialNumberEdit;
@@ -59,13 +51,6 @@ public class MainActivity extends AppCompatActivity {
 
     private Paint mPaint;
     private Canvas mCanvas;
-
-    private BluetoothAdapter mBTA;
-
-    //holds names of BT devices discovered
-    private ArrayList<String> btDevices;
-    private BroadcastReceiver mReceiver;
-    private String mCumAddress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,7 +109,6 @@ public class MainActivity extends AppCompatActivity {
         mCupId =  "PAULIG_MUKI_3F99F6";
         mDeviceInfoText = (TextView) findViewById(R.id.deviceInfoText);
         mCupImage = (ImageView) findViewById(R.id.imageSrc);
-        //mCupAddress = "D3:E1:C4:3F:99:F6"; // Cup
 
         mContrastSeekBar = (SeekBar) findViewById(R.id.contrastSeekBar);
         mContrastSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -146,43 +130,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mBTA = BluetoothAdapter.getDefaultAdapter();
-
-        btDevices = new ArrayList<String>();
-
-        mReceiver = new BroadcastReceiver() {
-            public void onReceive(Context context, Intent intent) {
-                String action = intent.getAction();
-
-                if (BluetoothDevice.ACTION_FOUND.equals(action)) {
-                    BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                    if (device.getName() != null && device.getName().equals("PAULIG_MUKI_3F99F6")) {
-                        btDevices.add(device.getName());
-                        Log.d("mukibt", "MUG FOUND!!!!!!!!!!!!!!!!!!!!!!!!!! :3");
-                    }
-                    else {
-                        Log.d("mukibt", "device.getName() is null");
-                    }
-                }
-            }
-        };
-
-        IntentFilter btFilter = new IntentFilter();
-        btFilter.addAction(BluetoothAdapter.ACTION_STATE_CHANGED);
-        btFilter.addAction(BluetoothDevice.ACTION_FOUND);
-
-        registerReceiver(mReceiver, btFilter);
-
-        //we have adapter
-        if (mBTA != null) {
-            //Bluetooth is OFF, so turn it on
-            if (!mBTA.isEnabled()) {
-                mBTA.enable();
-            }
-            else {
-                mBTA.startDiscovery();
-            }
-        }
         reset(null);
     }
 
@@ -252,21 +199,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void request(View view) {
         ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 0);
-        System.out.println(btDevices);
-
-        /*
-        Set<BluetoothDevice> pairedDevices = mBTA.getBondedDevices();
-
-        List<String> s = new ArrayList<String>();
-        for(BluetoothDevice bt : pairedDevices)
-            s.add(bt.getName());
-        System.out.println(s);
-
-        List<String> a = new ArrayList<String>();
-        for(BluetoothDevice bt : pairedDevices)
-            a.add(bt.getAddress());
-        System.out.println(a);
-        */
 
         String serialNumber = mSerialNumberEdit.getText().toString();
         showProgress();

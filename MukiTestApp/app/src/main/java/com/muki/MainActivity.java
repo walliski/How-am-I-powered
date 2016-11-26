@@ -175,9 +175,11 @@ public class MainActivity extends AppCompatActivity {
         Integer n1 = rand.nextInt(30) + 10;
         Integer n2 = rand.nextInt(20) + 5;
         Integer n3 = rand.nextInt(10) + 1;
-        drawTxt(n1.toString() + " %", Color.BLACK, 30, 80, 50);
-        drawTxt(n2.toString() + " %", Color.BLACK, 30, 80, 105);
-        drawTxt(n3.toString() + " %", Color.BLACK, 30, 80, 165);
+        char up = 0x25b4;
+        char down = 0x25be;
+        drawTxt(n1.toString() + " % " + String.valueOf(up), Color.BLACK, 30, 80, 50);
+        drawTxt(n2.toString() + " % " + String.valueOf(down), Color.BLACK, 30, 80, 105);
+        drawTxt(n3.toString() + " % " + String.valueOf(up), Color.BLACK, 30, 80, 165);
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         drawTxt(dateFormat.format(Calendar.getInstance().getTime()), Color.BLACK, 30, 5, 229);

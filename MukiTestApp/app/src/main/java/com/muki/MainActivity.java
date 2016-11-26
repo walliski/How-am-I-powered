@@ -98,6 +98,8 @@ public class MainActivity extends AppCompatActivity {
         mSerialNumberEdit = (EditText) findViewById(R.id.serailNumberText);
         mSerialNumberEdit.setText("0003833");
         mCupIdText = (TextView) findViewById(R.id.cupIdText);
+        mCupIdText.setText("PAULIG_MUKI_3F99F6");
+        mCupId =  "PAULIG_MUKI_3F99F6";
         mDeviceInfoText = (TextView) findViewById(R.id.deviceInfoText);
         mCupImage = (ImageView) findViewById(R.id.imageSrc);
 

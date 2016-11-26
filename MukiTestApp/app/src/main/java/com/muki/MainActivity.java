@@ -158,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if (BluetoothDevice.ACTION_FOUND.equals(action)) {
                     BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                    if (device.getName() == "PAULIG_MUKI_3F99F6") {
+                    if (device.getName() != null && device.getName().equals("PAULIG_MUKI_3F99F6")) {
                         btDevices.add(device.getName());
                         System.out.println("MUG FOUND!!!!!!!!!!!!!!!!!!!!!!!!!! :3");
                     }

@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
-        mPaint.setStrokeWidth(2F);
+        mPaint.setStrokeWidth(2.5F);
         mPaint.setStyle(Paint.Style.STROKE);
 
         mProgressDialog = new ProgressDialog(this);

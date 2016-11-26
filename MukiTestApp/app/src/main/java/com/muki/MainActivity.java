@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.Typeface;
+import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private SeekBar mContrastSeekBar;
     private ProgressDialog mProgressDialog;
 
-    private Bitmap mImage;
+    private Bitmap mImage, img;
     private int mContrast = ImageProperties.DEFAULT_CONTRACT;
 
     private String mCupId;
@@ -59,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        img = Bitmap.createBitmap(176,264, Bitmap.Config.RGB_565);
+        img.eraseColor(Color.WHITE);
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mPaint.setStrokeWidth(2.5F);
@@ -145,9 +148,7 @@ public class MainActivity extends AppCompatActivity {
         new AsyncTask<Void, Void, Bitmap>() {
             @Override
             protected Bitmap doInBackground(Void... voids) {
-                Bitmap result = Bitmap.createBitmap(mImage);
-                ImageUtils.convertImageToCupImage(result, mContrast);
-                return result;
+                return img;
             }
 
             @Override
@@ -168,38 +169,49 @@ public class MainActivity extends AppCompatActivity {
 
     public void reset(View view) {
         showProgress();
-        Bitmap image = BitmapFactory.decodeResource(getResources(), R.drawable.test_image);
-        mImage = ImageUtils.scaleBitmapToCupSize(image);
-        mContrast = ImageProperties.DEFAULT_CONTRACT;
-        mContrastSeekBar.setProgress(150);
-        Random rand = new Random();
+        img.eraseColor(Color.WHITE);
 
+        Random rand = new Random();
         Integer n1 = rand.nextInt(30) + 10;
         Integer n2 = rand.nextInt(20) + 5;
         Integer n3 = rand.nextInt(10) + 1;
         char up = 0x25b4;
         char down = 0x25be;
-        drawTxt(n1.toString() + " % " + String.valueOf(up), Color.BLACK, 30, 80, 50);
-        drawTxt(n2.toString() + " % " + String.valueOf(down), Color.BLACK, 30, 80, 105);
+        drawTxt(n1.toString() + " % " + String.valueOf(up), Color.BLACK, 30, 80, 55);
+        drawTxt(n2.toString() + " % " + String.valueOf(down), Color.BLACK, 30, 80, 110);
         drawTxt(n3.toString() + " % " + String.valueOf(up), Color.BLACK, 30, 80, 165);
 
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
         drawTxt(dateFormat.format(Calendar.getInstance().getTime()), Color.BLACK, 30, 5, 229);
-        
+
+        drawTxt("How am I powered?", Color.BLACK, 19, 5, 5);
+
+        Bitmap image = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.wind),50,50,true);
+        drawBitmap(image, 5, 50);
+        image = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.sun),50,50,true);
+        drawBitmap(image, 5, 105);
+        image = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.atom),50,50,true);
+        drawBitmap(image, 5, 160);
+
         setupImage();
         image.recycle();
     }
 
     public void send(View view) {
         showProgress();
-        mMukiCupApi.sendImage(mImage, new ImageProperties(mContrast), mCupId);
+        mMukiCupApi.sendImage(img, new ImageProperties(mContrast), mCupId);
     }
 
     public void drawTxt(String text, int color, int fontsize, int x, int y) {
         mPaint.setColor(color);
         mPaint.setTextSize(fontsize);
-        mCanvas = new Canvas(mImage);
-        mCanvas.drawText(text,0,text.length(),x,y+fontsize,mPaint);
+        mCanvas = new Canvas(img);
+        mCanvas.drawText(text,x,y+fontsize,mPaint);
+    }
+
+    public void drawBitmap(Bitmap bitmap, int x, int y) {
+        mCanvas = new Canvas(img);
+        mCanvas.drawBitmap(bitmap,x,y,mPaint);
     }
 
     public void clear(View view) {

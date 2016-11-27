@@ -26,14 +26,14 @@
             android:layout_weight="1"
             android:inputType="number"
             android:hint="Enter serial"
-            android:visibility="@string/debug"/>
+            android:visibility="gone"/>
 
         <Button
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:onClick="request"
             android:text="Request"
-            android:visibility="@string/debug"/>
+            android:visibility="gone"/>
     </LinearLayout>
 
     <TextView
@@ -41,7 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="No Cup Id"
-        android:visibility="@string/debug"/>
+        android:visibility="gone"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -77,7 +77,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:layout_marginBottom="0dp"
-        android:visibility="@string/debug" />
+        android:visibility="gone" />
 
     <LinearLayout
         android:layout_width="match_parent"

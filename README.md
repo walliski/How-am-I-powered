@@ -1,9 +1,10 @@
 # How am I powered?
 How am I powered? is a prototype for Paulig Muki. In the Android app it shows information about from where the energy you are using is coming, be it wind, sun, nuclear etc. In addition to this it also synchronizes with your Paulig Muki cup, so you can watch it while enjoying your energizing coffee moment! E-paper display won’t even consume any power if you leave it on!
 
-
 Based on: https://github.com/gustavpaulig/Paulig-Muki
 Icons showed on mug are from: https://icons8.com
+
+Developed during Junction 2016. 
 
 
 ## Inspiration

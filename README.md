@@ -24,9 +24,9 @@ None of us had done mobile app development before. This meant that there were ma
 
 
 ## Accomplishments that we're proud of
-We actually got something to show up on the mug
-We made a functioning Android application with no previous experience 
-Having great fun at Junction!
+* We actually got something to show up on the mug
+* We made a functioning Android application with no previous experience 
+* Having great fun at Junction!
 
 
 ## What we learned

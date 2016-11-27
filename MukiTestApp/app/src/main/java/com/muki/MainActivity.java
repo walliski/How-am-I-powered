@@ -159,6 +159,7 @@ public class MainActivity extends AppCompatActivity {
         nuclearTextView.setText(mNuclear.toString() + postFix);
 
         Typeface font = Typeface.createFromAsset( getAssets(), "fontawesome-webfont.ttf" );
+
         //Button refreshButton = (Button)findViewById( R.id.refresh );
         //refreshButton.setTypeface(font);
         //TextView sunIcon = (TextView)findViewById( R.id.sun );
